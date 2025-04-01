@@ -3,18 +3,26 @@ const express = require('express');
 const app = express();
 
 // This is how we use middleware
-app.use((req, res, next) => {
-  console.log('req: ', req);
-  next();
-})
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Individual app.get/put/post/delete, parsed file
 app.get('/', (req, res) => {
+	res.send('getting root');
+});
+
+app.get('/profile', (req, res) => {
+	res.send('getting profile');
+});
+
+app.post('/profile', (req, res) => {
+	console.log(req.body);
+
 	const user = {
 		name: 'Sally',
 		hobby: 'Soccer',
 	};
-  // Automatically does JSON.stringify(user)
+
 	res.send(user);
 });
 
