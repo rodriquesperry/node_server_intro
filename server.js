@@ -1,7 +1,12 @@
 // ********** Second Iteration (Express) ********** //
 const express = require('express');
-
 const app = express();
+
+// This is how we use middleware
+app.use((req, res, next) => {
+  console.log('req: ', req);
+  next();
+})
 
 // Individual app.get/put/post/delete, parsed file
 app.get('/', (req, res) => {
